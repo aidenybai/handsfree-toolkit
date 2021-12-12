@@ -1,0 +1,39 @@
+.cm-content {
+  caret-color: white;
+}
+
+.cm-cursor {
+  border-left-color: #444;
+}
+
+.cm-specialChar {
+  color: #f78;
+}
+
+.cm-button {
+  background-image: linear-gradient(#393939, #111);
+  border: 1px solid #888;
+}
+
+.cm-button:active {
+  background-image: linear-gradient(#111, #333);
+}
+.cm-textfield {
+  border: '1px solid #555';
+  background-color: 'inherit';
+}
+.cm-editor {
+  filter: var(--cm-filter);
+  color: black;
+  margin-left: 8px;
+  border-radius: 8px;
+}
+
+.ͼ1.cm-focused {
+  outline: none;
+}
+
+.cm-gutters {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}

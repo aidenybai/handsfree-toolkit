@@ -1,12 +1,20 @@
 lockfileVersion: 5.3
 
 specifiers:
-  hacky: ^0.1.3
+  hacky: ^0.1.5
+  handsfree: ^8.5.1
+  million: ^1.0.2
   vite: ^2.7.1
+  water.css: ^2.1.1
+
+dependencies:
+  handsfree: 8.5.1
 
 devDependencies:
-  hacky: 0.1.3
+  hacky: 0.1.5
+  million: 1.0.2
   vite: 2.7.1
+  water.css: 2.1.1
 
 packages:
 
@@ -170,6 +178,10 @@ packages:
       esbuild-windows-arm64: 0.13.15
     dev: true
 
+  /fingerpose/0.0.2:
+    resolution: {integrity: sha512-KNFly+Qc8B8fumdzoP6PhEY/UHodzjXmyo5+0ZsbNs0F+X2Mn4iiErcofnGONwwtcDuL2pvCC8bCwI9u1qPLDw==}
+    dev: false
+
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -182,11 +194,23 @@ packages:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
     dev: true
 
-  /hacky/0.1.3:
-    resolution: {integrity: sha512-20MqlFFqB1eDBroE31smQyTU1ke2f0sZD/FQl8wj3+5otgg5fe5gUa01b4Sir1NOYX6RyIvRNS+VB8+/1TZ45g==}
+  /gsap/2.1.3:
+    resolution: {integrity: sha512-8RFASCqi2FOCBuv7X4o7M6bLdy+1hbR0azg+MG7zz+EVsI+OmJblYsTk0GEepQd2Jg/ItMPiVTibF7r3EVxjZQ==}
+    dev: false
+
+  /hacky/0.1.5:
+    resolution: {integrity: sha512-hOsWlLM7e/RtTPy0kGgdqVSD2gASI2U62kxLG7VlDzdWl6NfcM6G18/liDmcljXIoJmYKIsgNIUZFNHtG3ppbw==}
     dependencies:
-      million: 1.0.1
+      million: 1.0.2
     dev: true
+
+  /handsfree/8.5.1:
+    resolution: {integrity: sha512-Sz8anlBAXDMMG92HgmUGqwU/Yzj7iw0dobdLJ+m4+PW2LSLjl4ylrZDgprzxZORfwXN1qv4RkUNpAg/hSrzGAw==}
+    dependencies:
+      fingerpose: 0.0.2
+      gsap: 2.1.3
+      lodash: 4.17.21
+    dev: false
 
   /has/1.0.3:
     resolution: {integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==}
@@ -201,8 +225,12 @@ packages:
       has: 1.0.3
     dev: true
 
-  /million/1.0.1:
-    resolution: {integrity: sha512-B7bbH7El5Dz2iVx7nSRdp9LG+SoqsIoRai//2mX16upMB9XQQbCa+RSKJzMxtaBvwY5EsYlrzld571p0L/xjjA==}
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
+
+  /million/1.0.2:
+    resolution: {integrity: sha512-alHmBDK5XDIAPN1WtEOCQf27OP1aNNvppIlDOvW+/QoqRNpnGUkf3naFYEtANe8vo+sh84TAn0psOW1s5cRz9A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
@@ -271,4 +299,8 @@ packages:
       rollup: 2.61.1
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /water.css/2.1.1:
+    resolution: {integrity: sha512-gkO5byC+pZ7ndEV18hs/RmxKoDtEZXx06tZU4ocI3IBdv4xV64tlhjIFbDjurysRnNkiy2oQTr8PakRyzZWPJw==}
     dev: true
