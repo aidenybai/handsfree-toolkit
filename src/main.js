@@ -95,37 +95,38 @@ const App = init(() =>
         className: 'hc-button',
         onclick: () => {
           const code = document.getElementById('cm').view.state.doc.toString();
-          const globals = { Handsfree, $$config: config };
+          const handsfree = new Handsfree(config.models);
+          handsfree.enablePlugins('browser');
+          console.log(handsfree);
+          const globals = { handsfree };
           new Function(
             ...Object.keys(globals),
             `
-            const handsfree = new Handsfree($$config);
-            handsfree.enablePlugins('browser');
-            handsfree.start();
-            ${
-              config.models.hands.enabled
-                ? 'const hands = () => handsfree.data.hands.multiHandLandmarks;'
-                : ''
-            }
-            ${
-              config.models.handpose.enabled
-                ? 'const handpose = () => handsfree.data.handpose.annotations;'
-                : ''
-            }
-            ${
-              config.models.facemesh.enabled
-                ? 'const facemesh = () => handsfree.data.facemesh.multiFaceLandmarks;'
-                : ''
-            }
-            ${
-              config.models.pose.enabled
-                ? 'const pose = () => handsfree.data.pose.poseLandmarks;'
-                : ''
-            }
-            handsfree.on('data', (event) => {
+            document.addEventListener('handsfree-data', ({ detail }) => {
+              ${
+                config.models.hands.enabled
+                  ? 'const hands = () => detail.hands.multiHandLandmarks;'
+                  : ''
+              }
+              ${
+                config.models.handpose.enabled
+                  ? 'const handpose = () => detail.handpose.annotations;'
+                  : ''
+              }
+              ${
+                config.models.facemesh.enabled
+                  ? 'const facemesh = () => detail.facemesh.multiFaceLandmarks;'
+                  : ''
+              }
+              ${
+                config.models.pose.enabled
+                  ? 'const pose = () => detail.pose.poseLandmarks;'
+                  : ''
+              }
               ${code}
             });`
           )(...Object.values(globals));
+          handsfree.start();
         },
       },
       ['Run']
