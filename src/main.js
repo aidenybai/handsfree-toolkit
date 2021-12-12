@@ -10,6 +10,9 @@ import {
   input,
   label,
   span,
+  pre,
+  code,
+  video,
 } from 'hacky';
 import Handsfree from 'handsfree';
 import 'handsfree/build/lib/assets/handsfree.css';
@@ -22,28 +25,28 @@ const config = {
     hands: {
       enabled: false,
       maxNumHands: 4,
-      minDetectionConfidence: 0.4,
-      minTrackingConfidence: 0.4,
+      minDetectionConfidence: 0.6,
+      minTrackingConfidence: 0.6,
     },
     handpose: {
       enabled: false,
       backend: 'webgl',
       maxContinuousChecks: Infinity,
-      detectionConfidence: 0.75,
+      detectionConfidence: 0.8,
       iouThreshold: 0.3,
       scoreThreshold: 0.75,
     },
     facemesh: {
       enabled: false,
       maxNumFaces: 4,
-      minDetectionConfidence: 0.4,
-      minTrackingConfidence: 0.4,
+      minDetectionConfidence: 0.6,
+      minTrackingConfidence: 0.6,
     },
     pose: {
       enabled: false,
       smoothLandmarks: true,
-      minDetectionConfidence: 0.4,
-      minTrackingConfidence: 0.4,
+      minDetectionConfidence: 0.6,
+      minTrackingConfidence: 0.6,
     },
   },
 };
@@ -95,32 +98,34 @@ const App = init(() =>
         className: 'hc-button',
         onclick: () => {
           const code = document.getElementById('cm').view.state.doc.toString();
-          const handsfree = new Handsfree(config.models);
-          handsfree.enablePlugins('browser');
-          console.log(handsfree);
+          const handsfree = new Handsfree({
+            ...config.models,
+          });
+          handsfree.disablePlugins('browser');
+          handsfree.disablePlugins('core');
+          handsfree.plugin.palmPointers.disable();
           const globals = { handsfree };
           new Function(
             ...Object.keys(globals),
-            `
-            document.addEventListener('handsfree-data', ({ detail }) => {
+            `document.addEventListener('handsfree-data', ({ detail }) => {
               ${
                 config.models.hands.enabled
-                  ? 'const hands = () => detail.hands.multiHandLandmarks;'
+                  ? 'const hands = detail.hands.multiHandLandmarks;'
                   : ''
               }
               ${
                 config.models.handpose.enabled
-                  ? 'const handpose = () => detail.handpose.annotations;'
+                  ? 'const handpose = detail.handpose.annotations;'
                   : ''
               }
               ${
                 config.models.facemesh.enabled
-                  ? 'const facemesh = () => detail.facemesh.multiFaceLandmarks;'
+                  ? 'const facemesh = detail.facemesh.multiFaceLandmarks;'
                   : ''
               }
               ${
                 config.models.pose.enabled
-                  ? 'const pose = () => detail.pose.poseLandmarks;'
+                  ? 'const pose = detail.pose.poseLandmarks;'
                   : ''
               }
               ${code}
@@ -135,6 +140,16 @@ const App = init(() =>
       id: 'cm',
       className: 'CodeMirror cm-s-3024-night',
     }),
+    pre([
+      code([
+        `// Hands model
+const hand = hands[0];
+if (hand) {
+  alert('I detected a hand!');
+}`,
+      ]),
+    ]),
+    video({ id: 'video' }),
   ])
 );
 
