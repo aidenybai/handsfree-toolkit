@@ -1,0 +1,21 @@
+{
+  "name": "handsfree-toolkit",
+  "description": "A REPL with a composable Handsfree.js toolkit for developing webcam AI reverse workshops",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidenybai/handsfree-toolkit.git"
+  },
+  "author": "Aiden Bai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aidenybai/handsfree-toolkit/issues"
+  },
+  "homepage": "https://handsfree-toolkit.vercel.app",
+  "devDependencies": {
+    "vite": "^2.7.1"
+  }
+}
